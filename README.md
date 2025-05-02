@@ -1,18 +1,44 @@
-Group members:
-Afnan Hassan: 22i-0991
-Ali Ahmed: 22i-1055
-Minahil Ali: 22i-0849
+# Parallel SSSP on StackOverflow Network
 
-DOWNLOAD THE DATASET FROM:
-https://snap.stanford.edu/data/sx-stackoverflow.html#:~:text=Dataset%20statistics%20%28sx,Edges%20in%20static%20graph%2036233450
-SELECT sx-stackoverflow.txt.gz
+## Group Members
+- **Afnan Hassan** — 22i-0991  
+- **Ali Ahmed** — 22i-1055  
+- **Minahil Ali** — 22i-0849  
 
-COMMANDS TO COMPILE (UBUNTU/WSL):
-  sequential:
+## Dataset
+
+We use the **StackOverflow network** dataset from Stanford SNAP:
+
+ **Download**:  
+https://snap.stanford.edu/data/sx-stackoverflow.html
+
+ **File**: `sx-stackoverflow.txt.gz`  
+
+
+Compilation Instructions (Ubuntu/WSL)
+ Sequential Version
+
+Compile the sequential SSSP implementation:
+
 gcc sssp_sequential.c -o sssp
 
-  METIS:
-(first make sure to download METIS)
+Partitioning with METIS
+
+    Install METIS:
+
+sudo apt update
+sudo apt install libmetis-dev
+
+    Compile METIS-based partitioning:
+
 gcc -o a partition_metis2.c -lmetis -lm
+
+    Run partitioning:
+
 ./a sx-stackoverflow.txt 8 sx_partitions.txt
-(where sx-stackoverflow.txt is the dataset, 8 is number of partitions, sx_partitions.txt is the output file)
+
+    sx-stackoverflow.txt: Input dataset
+
+    8: Number of partitions
+
+    sx_partitions.txt: Output file
